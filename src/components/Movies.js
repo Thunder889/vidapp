@@ -7,6 +7,10 @@ state = {
     movie: getMovies()
 }
 
+handleDelete(){ 
+    console.log('delete me')
+}
+
     render() {
       return (
         <div>
@@ -22,13 +26,14 @@ state = {
             <tbody>
                 {this.state.movies.map(movies => {
                     return(
-                    <tr>
-                    <td>The Flash</td>
-                    <td>SF</td>
-                    <td>0</td>
-                    <td>3</td>
+                    <tr key='movie._id'>
+                    <td>{movie.title}</td>
+                    <td>{movie.genre}</td>
+                    <td>{movie.numberInStock}</td>
+                    <td>{movie.dailyRentalRate}</td>
                     <td>
-                      <button className='btn btn-danger btn-sm'>Delete</button>
+                      <button onClick={() => this.handleDelete(movie)}
+                              className='btn btn-danger btn-sm'>Delete</button>
                     </td>
                   </tr>
                   )
