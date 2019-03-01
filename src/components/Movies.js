@@ -4,11 +4,12 @@ import {getMovies} from '../services/fakeMovieServices';
 class Movies extends Component {
 
 state = {
-    movie: getMovies()
+    movies: getMovies()
 }
 
-handleDelete(){ 
-    console.log('delete me')
+handleDelete(movie){ 
+    const movies = this.state.movies.filter(m => m._id !== movie._id)
+    this.setState({movies});
 }
 
     render() {
@@ -24,11 +25,11 @@ handleDelete(){
               </tr>
             </thead>
             <tbody>
-                {this.state.movies.map(movies => {
+                {this.state.movies.map((movie) => {
                     return(
-                    <tr key='movie._id'>
+                    <tr key={movie._id}>
                     <td>{movie.title}</td>
-                    <td>{movie.genre}</td>
+                    <td>{movie.genre.name}</td>
                     <td>{movie.numberInStock}</td>
                     <td>{movie.dailyRentalRate}</td>
                     <td>

@@ -12,4 +12,4 @@ class App extends Component {
   }
 }
 
-export default Movies;
+export default App;
