@@ -27,7 +27,7 @@ handleDelete(movie){
             <tbody>
                 {this.state.movies.map((movie) => {
                     return(
-                    <tr key={movie._id}>
+                    <tr key={move._id}>
                     <td>{movie.title}</td>
                     <td>{movie.genre.name}</td>
                     <td>{movie.numberInStock}</td>
