@@ -15,7 +15,7 @@ class Movies extends Component {
 
   handelLike(index){
     if (index){
-
+      
     }
   }
 
