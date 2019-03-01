@@ -1,49 +1,69 @@
-import React, {Component} from 'react'
-import {getMovies} from '../services/fakeMovieServices';
+import React, { Component } from "react";
+import { getMovies } from "../services/fakeMovieServices";
 
 class Movies extends Component {
-
-state = {
+  state = {
     movies: getMovies()
-}
+  };
 
-handleDelete(movie){ 
-    const movies = this.state.movies.filter(m => m._id !== movie._id)
-    this.setState({movies});
-}
+  handleDelete(movie) {
+    this.setState(prevState => {
+      const movies = this.state.movies.filter(m => m._id !== movie._id);
+    });
+    return movie;
+  }
 
-    render() {
-      return (
-        <div>
-          <table className='table'>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Genre</th>
-                <th>Stock</th>
-                <th>Rate</th>
-              </tr>
-            </thead>
-            <tbody>
-                {this.state.movies.map((movie) => {
-                    return(
-                    <tr key={movie._id}>
-                    <td>{movie.title}</td>
-                    <td>{movie.genre.name}</td>
-                    <td>{movie.numberInStock}</td>
-                    <td>{movie.dailyRentalRate}</td>
-                    <td>
-                      <button onClick={() => this.handleDelete(movie)}
-                              className='btn btn-danger btn-sm'>Delete</button>
-                    </td>
-                  </tr>
-                  )
-                })}
-            </tbody>
-          </table>
-        </div>
-      );
+  handelLike(index){
+    if (index){
+
     }
   }
-  
-  export default Movies;
+
+  render() {
+    return (
+      <div>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Genre</th>
+              <th>Stock</th>
+              <th>Rate</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.movies.map((movie, index) => {
+              return (
+                <tr key={movie._id} key={index}>
+                  <td>{movie.title}</td>
+                  <td>{movie.genre.name}</td>
+                  <td>{movie.numberInStock}</td>
+                  <td>{movie.dailyRentalRate}</td>
+                  <td>
+                    <i
+                      onClick={() => this.handleDelete(this.handelLike)}
+                      className={(!this.state.isLiked) ? 'fa-heart' : 'fa-heart-o'}
+                    >
+                     
+                    </i>
+                    </td>
+                    <td>
+                    <button
+                      onClick={() => this.handleDelete(movie)}
+                      className="btn btn-danger btn-sm"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
+
+export default Movies;
