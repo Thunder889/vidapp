@@ -8,13 +8,21 @@ class Movies extends Component {
   };
 
   handleDelete(movie) {
-    this.setState(prevState => {
+    
       const movies = this.state.movies.filter(m => m._id !== movie._id);
-    });
-    return movie;
+    
+    this.setState({movies})
   }
 
-  handelLike(index) {}
+  handleLike(movie) {
+    console.log(movie)
+    this.setState(prevState => {
+      const movies = prevState.movies;
+      const index = movies.indexOf(movie);
+      movies[index].liked = !movies[index].liked;
+      return {movies}
+    });
+  } 
 
   render() {
     return (
@@ -38,7 +46,10 @@ class Movies extends Component {
                   <td>{movie.numberInStock}</td>
                   <td>{movie.dailyRentalRate}</td>
                   <td>
-                    <Like />
+                    <Like 
+                        liked={movie.liked}
+                        onLikeClicked={() => this.handleLike(movie)}
+                            />
                   </td>
                   <td>
                     <button
