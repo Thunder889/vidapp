@@ -25,8 +25,12 @@ class Movies extends Component {
   } 
 
   render() {
+
+    if(this.state.movies.length == 0)return <p className='asd'>There are no movies in our database</p>
+
     return (
       <div>
+        <p>We have {this.state.movies.length} in our database</p>
         <table className="table">
           <thead>
             <tr>
