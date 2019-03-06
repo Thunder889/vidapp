@@ -8,6 +8,8 @@ const Pagination = (props) => {
 
  const pages = _.range(1, pagesCount + 1);
 
+
+
  return (
    <nav>
      <ul className='pagination'>

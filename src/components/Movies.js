@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getMovies } from "../services/fakeMovieServices";
 import Like from "./common/Like";
 import Pagination from './common/Pagination'
+import {paginate} from './utils/paginate'
 
 class Movies extends Component {
   state = {
@@ -25,9 +26,19 @@ class Movies extends Component {
     });
   } 
 
+  handlePageChange(){
+    
+  }
+
   render() {
 
+    const {pageSize, currentPage, movies} = this.state
+
+
     if(this.state.movies.length == 0)return <p className='asd'  >There are no movies in our database</p>
+
+    const paginatedMovies = paginate(movies, currentPage, pageSize);
+    console.log(paginatedMovies)
 
     return (
       <div>
@@ -69,7 +80,12 @@ class Movies extends Component {
             })}
           </tbody>
         </table>
-        <Pagination/>
+        <Pagination
+        itemsCount={lenght}
+        currentPage={currentPage}
+        pageSize={pageSize}
+        onPangeChange={this.handlePageChange}/>
+        <React.Fragment/>
       </div>
     );
   }
