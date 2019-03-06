@@ -1,15 +1,14 @@
-import _ from 'lodash'
-import React, { Component } from 'react'
+import React from 'react';
+import _ from 'lodash';
 
-export function paginate (items, pageNumber, pageSize) {
-   const startIndex = (pageNumber - 1) * pageSize;
-   const lastIndex = pages * pageNumber;
+export function paginate(items, pageNumber, pageSize) {
+ const startIndex = (pageNumber - 1) * pageSize;
+ const lastIndex = pageSize * pageNumber;
 
-   _(items)
-   .slice(startIndex)
-   .take(pageSize)
-   .value();
+ // return _(items)
+ //   .slice(startIndex)
+ //   .take(pageSize)
+ //   .value();
 
-   return items.slice(startIndex, lastIndex)
-   
+ return items.slice(startIndex, lastIndex);
 }
